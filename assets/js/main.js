@@ -291,3 +291,44 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+// Grid/List View Toggle
+document.addEventListener("DOMContentLoaded", () => {
+  const gridViewBtn = document.getElementById("grid-view");
+  const listViewBtn = document.getElementById("list-view");
+  const postsContainer = document.getElementById("posts-container");
+
+  if (gridViewBtn && listViewBtn && postsContainer) {
+    // Load saved view preference
+    const savedView = localStorage.getItem("posts-view") || "list";
+    applyView(savedView);
+
+    gridViewBtn.addEventListener("click", () => {
+      applyView("grid");
+      localStorage.setItem("posts-view", "grid");
+    });
+
+    listViewBtn.addEventListener("click", () => {
+      applyView("list");
+      localStorage.setItem("posts-view", "list");
+    });
+
+    function applyView(view) {
+      if (view === "grid") {
+        postsContainer.className = "grid grid-cols-1 md:grid-cols-2 gap-6";
+        gridViewBtn.classList.add("bg-gray-100", "dark:bg-gray-900");
+        listViewBtn.classList.remove("bg-gray-100", "dark:bg-gray-900");
+      } else {
+        postsContainer.className = "posts-list";
+        listViewBtn.classList.add("bg-gray-100", "dark:bg-gray-900");
+        gridViewBtn.classList.remove("bg-gray-100", "dark:bg-gray-900");
+
+        // Adjust cards for list view
+        const cards = postsContainer.querySelectorAll(".post-item");
+        cards.forEach((card) => {
+          card.classList.remove("md:col-span-2");
+        });
+      }
+    }
+  }
+});

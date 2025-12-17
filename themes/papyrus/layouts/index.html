@@ -1,125 +1,134 @@
 {{ define "main" }}
-<div class="grid grid-cols-12 gap-8 h-full">
-
-    <!-- Sidebar: Filters & Branding -->
-    <aside class="col-span-12 md:col-span-3 lg:col-span-2 pt-2 mb-6 md:mb-0">
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-sans tracking-tighter mb-8 md:mb-12 relative text-gray-900 dark:text-gray-100 transition-colors duration-300">
-            Blog
-            <span class="absolute top-0 -right-4 text-xs font-mono text-gray-500 dark:text-gray-400">({{ len .Site.RegularPages }})</span>
+<!-- Hero Section with Animated Grid Background -->
+<div class="relative mb-16 -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8 py-16 md:py-24 overflow-hidden">
+    <!-- Animated Grid Background -->
+    <div class="absolute inset-0 grid-background opacity-30 dark:opacity-20"></div>
+    
+    <!-- Gradient Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#FAFAFA]/80 to-[#FAFAFA] dark:from-transparent dark:via-[#0A0A0A]/80 dark:to-[#0A0A0A]"></div>
+    
+    <!-- Content -->
+    <div class="relative z-10 max-w-4xl">
+        <div class="font-mono text-xs uppercase text-gray-500 dark:text-gray-400 mb-4 tracking-wider">/ Welcome</div>
+        <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-mono font-bold tracking-tighter mb-6 text-gray-900 dark:text-gray-100 leading-[0.9] uppercase">
+            Thoughts & <br class="hidden sm:block"/>Ideas
         </h1>
+        <p class="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed">
+            Exploring technology, design, and everything in between. {{ len .Site.RegularPages }} articles and counting.
+        </p>
+    </div>
+</div>
 
-        <div class="font-mono text-xs uppercase text-gray-500 dark:text-gray-400 mb-4 tracking-wider transition-colors duration-300">/ Filters</div>
-        
-        <!-- Mock Topic Filters (Visual Only for now) -->
-        <div class="space-y-2 text-sm text-gray-500 font-sans">
-            <div class="flex items-center gap-2 cursor-pointer hover:text-black dark:hover:text-white group transition-colors duration-300">
-                <div class="w-3 h-3 border border-gray-300 dark:border-gray-600 rounded flex items-center justify-center transition-colors duration-300">
-                    <div class="w-2 h-2 bg-black dark:bg-white opacity-0 group-hover:opacity-20"></div>
+<div class="grid grid-cols-12 gap-6 md:gap-8">
+    <!-- Sidebar: Filters & Stats -->
+    <aside class="col-span-12 lg:col-span-3 mb-8 lg:mb-0">
+        <div class="lg:sticky lg:top-24 space-y-6">
+            <!-- Quick Stats -->
+            <div class="grid grid-cols-2 lg:grid-cols-1 gap-4">
+                <div class="border-2 border-gray-300 dark:border-gray-700 p-4 hover:border-gray-900 dark:hover:border-gray-300 transition-all duration-300">
+                    <div class="font-mono text-3xl font-bold text-gray-900 dark:text-gray-100">{{ len .Site.RegularPages }}</div>
+                    <div class="font-mono text-xs uppercase text-gray-500 dark:text-gray-400 mt-1">Articles</div>
                 </div>
-                <span>Topic</span>
+                <div class="border-2 border-gray-300 dark:border-gray-700 p-4 hover:border-gray-900 dark:hover:border-gray-300 transition-all duration-300">
+                    <div class="font-mono text-3xl font-bold text-gray-900 dark:text-gray-100">{{ len .Site.Taxonomies.tags }}</div>
+                    <div class="font-mono text-xs uppercase text-gray-500 dark:text-gray-400 mt-1">Topics</div>
+                </div>
             </div>
-            
-            <div class="pl-5 space-y-1">
-                {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
-                <label class="flex items-center gap-2 cursor-pointer text-gray-500 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-300">
-                     <input type="checkbox" value="{{ $name | lower }}" class="filter-checkbox accent-black dark:accent-white h-3 w-3 border-gray-300 dark:border-gray-600 rounded focus:ring-0">
-                     <span>{{ $name | humanize }} ({{ len $taxonomy }})</span>
-                </label>
-                {{ end }}
+
+            <!-- Filters -->
+            <div class="border-t border-gray-200 dark:border-gray-800 pt-6 hidden lg:block">
+                <div class="font-mono text-xs uppercase text-gray-500 dark:text-gray-400 mb-4 tracking-wider">/ Filter by Topic</div>
+                <div class="space-y-2 text-sm">
+                    {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+                    <label class="flex items-center gap-2 cursor-pointer text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white transition-colors duration-300 group">
+                        <input type="checkbox" value="{{ $name | lower }}" class="filter-checkbox accent-black dark:accent-white h-3 w-3 border-gray-300 dark:border-gray-600 rounded focus:ring-0">
+                        <span class="flex-1">{{ $name | humanize }}</span>
+                        <span class="text-xs text-gray-400">({{ len $taxonomy }})</span>
+                    </label>
+                    {{ end }}
+                </div>
             </div>
         </div>
     </aside>
 
-    <!-- Main List: Posts -->
-    <div class="col-span-12 md:col-span-9 lg:col-span-10">
-        <!-- Header Row -->
-        <div class="hidden md:grid grid-cols-12 border-b border-theme-border pb-2 mb-4 font-mono text-xs uppercase text-gray-500 tracking-wider">
-            <div class="col-span-2">/ Date</div>
-            <div class="col-span-7">/ Name</div>
-            <div class="col-span-2">/ Tags</div>
+    <!-- Main Grid: Posts -->
+    <div class="col-span-12 lg:col-span-9">
+        <!-- View Toggle -->
+        <div class="flex items-center justify-between mb-6">
+            <div class="font-mono text-xs uppercase text-gray-500 dark:text-gray-400 tracking-wider">/ Latest Articles</div>
+            <div class="flex gap-2">
+                <button id="grid-view" class="p-2 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors" title="Grid View">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z"/>
+                    </svg>
+                </button>
+                <button id="list-view" class="p-2 border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors bg-gray-100 dark:bg-gray-900" title="List View">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                </button>
+            </div>
         </div>
 
-        <!-- Posts Loop (Filtered Container) -->
-        <div class="space-y-0" id="posts-container">
-            {{ range .Site.RegularPages }}
-            <!-- Add data-tags attribute for JS filtering -->
-            <div class="group post-item border-b border-theme-border" data-tags="{{ with .Params.tags }}{{ delimit . "," | lower }}{{ end }}">
-                <!-- Header -->
-                <div class="group grid grid-cols-12 py-4 md:py-6 items-start md:items-center hover:bg-[#ccff00] transition-colors duration-300 ease-out -mx-4 px-4 relative">
-                    <!-- Link Area (Date + Title) - Click to Navigate -->
-                    <a href="{{ .RelPermalink }}" class="col-span-12 md:col-span-9 md:grid md:grid-cols-9 items-center group-hover:underline decoration-1 underline-offset-4 w-full h-full z-10 mb-3 md:mb-0">
-                        <div class="font-mono text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 group-hover:text-black transition-colors duration-300 mb-2 md:mb-0 md:col-span-2">
-                            {{ .Date.Format "2006.01.02" }}
+        <!-- Posts Container -->
+        <div id="posts-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {{ range $index, $page := .Site.RegularPages }}
+            <!-- Card Layout -->
+            <article class="post-item group border-2 border-gray-300 dark:border-gray-700 hover:border-gray-900 dark:hover:border-gray-300 transition-all duration-300 overflow-hidden {{ if eq (mod $index 3) 0 }}md:col-span-2{{ end }}" data-tags="{{ with .Params.tags }}{{ delimit . "," | lower }}{{ end }}">
+                <a href="{{ .RelPermalink }}" class="block h-full">
+                    <!-- Card Header with gradient -->
+                    <div class="relative p-6 {{ if eq (mod $index 3) 0 }}md:p-8 bg-gradient-to-br from-white to-gray-50 dark:from-[#0A0A0A] dark:to-[#1A1A1A]{{ else }}bg-white dark:bg-[#0A0A0A]{{ end }} border-b-2 border-gray-300 dark:border-gray-700">
+                        <!-- Featured badge for first post -->
+                        {{ if eq $index 0 }}
+                        <div class="absolute top-4 right-4 bg-black dark:bg-white text-white dark:text-black px-2 py-1 font-mono text-[10px] uppercase tracking-wider">Featured</div>
+                        {{ end }}
+                        
+                        <!-- Date -->
+                        <div class="font-mono text-[10px] text-gray-500 dark:text-gray-500 mb-3 uppercase tracking-wider">
+                            {{ .Date.Format "Jan 02, 2006" }}
                         </div>
-                        <div class="text-xl sm:text-2xl md:text-3xl font-sans tracking-tight font-medium leading-snug group-hover:text-black transition-colors duration-300 md:col-span-7 md:pr-8">
+                        
+                        <!-- Title -->
+                        <h2 class="font-sans {{ if eq (mod $index 3) 0 }}text-3xl md:text-4xl{{ else }}text-2xl md:text-3xl{{ end }} font-bold tracking-tight text-[#0A0A0A] dark:text-[#F5F5F5] mb-3 group-hover:text-gray-600 dark:group-hover:text-gray-400 transition-colors leading-tight">
                             {{ .Title }}
-                        </div>
-                    </a>
-
-                    <!-- Interaction Area (Tags + Expander) -->
-                    <div class="col-span-12 md:col-span-3 grid grid-cols-12 md:grid-cols-3 items-center z-20 gap-2">
-                        <div class="col-span-10 md:col-span-2 flex flex-wrap gap-1 justify-start md:justify-end relative">
-                             {{ range .Params.tags }}
-                            <span class="text-[10px] font-mono border border-gray-300 dark:border-gray-700 rounded-none px-1 text-gray-500 dark:text-gray-400 group-hover:border-black group-hover:text-black uppercase bg-white/50 dark:bg-black/20 group-hover:bg-transparent transition-colors duration-300">{{ . }}</span>
+                        </h2>
+                        
+                        <!-- Tags -->
+                        <div class="flex flex-wrap gap-2">
+                            {{ if .Params.tags }}
+                                {{ range first 3 .Params.tags }}
+                                <span class="text-[10px] font-mono border-2 border-gray-300 dark:border-gray-700 px-2 py-1 text-gray-600 dark:text-gray-500 uppercase tracking-wider hover:border-gray-900 dark:hover:border-gray-300 transition-colors">{{ . }}</span>
+                                {{ end }}
                             {{ end }}
                         </div>
-                        <!-- Expander Button (Specific Target) -->
-                        <div class="col-span-2 md:col-span-1 flex justify-end text-gray-400 dark:text-gray-500 group-hover:text-black font-mono text-xl cursor-pointer accordion-trigger p-2 transition-colors duration-300" onclick="toggleAccordion(this)">
-                            <span class="plus-icon">+</span>
-                            <span class="minus-icon hidden">–</span>
-                        </div>
                     </div>
-                </div>
-
-                <!-- Expansion Panel -->
-                <div class="accordion-content bg-gray-50 dark:bg-gray-900 grid grid-rows-[0fr] transition-[grid-template-rows,background-color] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]">
-                    <div class="overflow-hidden">
-                        <div class="grid grid-cols-1 md:grid-cols-12 py-6 md:py-8 -mx-4 px-4 border-t border-dashed border-gray-300 dark:border-gray-700 gap-4 md:gap-y-6">
-                            
-                            <!-- Row 1: Summary & Author -->
-                            <!-- Summary Section -->
-                            <div class="md:col-span-2 font-mono text-[10px] uppercase text-gray-500 dark:text-gray-400 tracking-wider mb-2 md:mb-0 md:pt-1">Summary :</div>
-                            
-                            <!-- Summary Content -->
-                            <div class="md:col-span-7 font-sans text-base md:text-lg leading-relaxed text-gray-900 dark:text-gray-100 md:pr-8 transition-colors duration-300 mb-4 md:mb-0">
-                                {{ if .Params.summary }}
-                                    {{ .Params.summary }}
-                                {{ else }}
-                                    {{ .Summary | plainify }}
-                                {{ end }}
+                    
+                    <!-- Card Body -->
+                    <div class="p-6 {{ if eq (mod $index 3) 0 }}md:p-8{{ end }}">
+                        <!-- Summary -->
+                        <p class="text-gray-600 dark:text-gray-400 mb-4 {{ if eq (mod $index 3) 0 }}text-lg{{ else }}text-base{{ end }} leading-relaxed line-clamp-3">
+                            {{ if .Params.summary }}
+                                {{ .Params.summary }}
+                            {{ else }}
+                                {{ .Summary | plainify | truncate 150 }}
+                            {{ end }}
+                        </p>
+                        
+                        <!-- Meta -->
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="font-mono text-gray-500 dark:text-gray-400">
+                                {{ .ReadingTime }} min read
                             </div>
-
-                            <!-- Author Section -->
-                            <div class="md:col-span-1 font-mono text-[10px] uppercase text-gray-500 dark:text-gray-400 tracking-wider mb-2 md:mb-0 md:pt-1 md:text-right md:pr-2">Authors :</div>
-                            
-                            <!-- Author Content -->
-                            <div class="md:col-span-2 font-sans text-sm md:text-base text-gray-900 dark:text-gray-100 transition-colors duration-300 mb-4 md:mb-0">
-                                {{ .Params.author | default "Author" }}
-                            </div>
-
-                            <!-- Row 2: Topics -->
-                            <!-- Topics Label -->
-                            <div class="md:col-span-2 font-mono text-[10px] uppercase text-gray-500 dark:text-gray-400 tracking-wider mb-2 md:mb-0 md:pt-1">Topics :</div>
-                            
-                            <!-- Topics Content -->
-                            <div class="md:col-span-10 flex flex-wrap gap-2 mb-4 md:mb-0">
-                                {{ with .Params.tags }}
-                                    {{ range . }}
-                                    <span class="bg-gray-200/60 dark:bg-gray-700/40 border border-gray-200 dark:border-gray-600 px-1.5 py-0.5 rounded-none text-[10px] font-mono uppercase tracking-wide text-gray-600 dark:text-gray-300 transition-colors duration-300">{{ . }}</span>
-                                    {{ end }}
-                                {{ end }}
-                            </div>
-
-                            <!-- Row 3: Read Button -->
-                            <div class="md:col-span-12 mt-2">
-                                 <a href="{{ .RelPermalink }}" class="block w-full bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-none py-2 text-center hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black hover:border-black dark:hover:border-white transition-all duration-500 ease-out font-sans font-medium text-xs uppercase tracking-wide text-gray-700 dark:text-gray-300">
-                                    Read
-                                </a>
+                            <div class="flex items-center gap-2 text-gray-900 dark:text-gray-100 group-hover:gap-3 transition-all">
+                                <span class="font-medium">Read more</span>
+                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                </svg>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                </a>
+            </article>
             {{ end }}
         </div>
     </div>

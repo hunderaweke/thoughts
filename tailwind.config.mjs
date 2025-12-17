@@ -29,6 +29,10 @@ export default {
           DEFAULT: "#8b6f47",
           dark: "#d4a76a",
         },
+        "theme-border": {
+          DEFAULT: "#E0E0E0",
+          dark: "#2A2A2A",
+        },
       },
       typography: (theme) => ({
         DEFAULT: {

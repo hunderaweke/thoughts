@@ -22,8 +22,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body
-    class="bg-[#FAFAFA] dark:bg-[#0A0A0A] text-[#0A0A0A] dark:text-[#F5F5F5] font-sans min-h-screen flex flex-col selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black transition-colors duration-300"
+    class="bg-[#FAFAFA] dark:bg-[#0A0A0A] text-[#0A0A0A] dark:text-[#F5F5F5] font-sans min-h-screen flex flex-col selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black transition-colors duration-300 relative"
   >
+    <!-- Decorational Grid Background -->
+    <div
+      class="fixed inset-0 decorational-grid opacity-20 dark:opacity-10 pointer-events-none z-0"
+    ></div>
     <header
       class="fixed top-0 left-0 w-full z-50 bg-[#FAFAFA]/95 dark:bg-[#0A0A0A]/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 transition-colors duration-300"
     >
@@ -96,14 +100,14 @@
 
     <!-- Main Content Block -->
     <main
-      class="flex-grow w-full max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8 relative pt-24"
+      class="flex-grow w-full max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8 relative pt-24 z-10"
     >
       {{ block "main" . }}{{ end }}
     </main>
 
     <!-- Footer -->
     <footer
-      class="py-12 px-4 sm:px-6 md:px-8 text-xs font-mono text-gray-500 dark:text-gray-400 mt-auto"
+      class="py-12 px-4 sm:px-6 md:px-8 text-xs font-mono text-gray-500 dark:text-gray-400 mt-auto z-10 relative"
     >
       <span>© {{ now.Year }} {{ .Site.Title }}</span>
     </footer>
