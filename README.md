@@ -145,5 +145,3 @@ Built with:
 
 - [Hugo](https://gohugo.io/)
 - [Tailwind CSS](https://tailwindcss.com/)
-- [EB Garamond](https://fonts.google.com/specimen/EB+Garamond)
-- [Inter](https://fonts.google.com/specimen/Inter)
