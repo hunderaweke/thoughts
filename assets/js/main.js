@@ -316,15 +316,43 @@ document.addEventListener("DOMContentLoaded", () => {
     function applyView(view) {
       if (view === "grid") {
         postsContainer.className = "grid grid-cols-1 md:grid-cols-2 gap-6";
-        gridViewBtn.classList.add("bg-black", "dark:bg-white", "text-white", "dark:text-black", "border-black", "dark:border-white");
+        gridViewBtn.classList.add(
+          "bg-black",
+          "dark:bg-white",
+          "text-white",
+          "dark:text-black",
+          "border-black",
+          "dark:border-white"
+        );
         gridViewBtn.classList.remove("border-gray-300", "dark:border-gray-700");
-        listViewBtn.classList.remove("bg-black", "dark:bg-white", "text-white", "dark:text-black", "border-black", "dark:border-white");
+        listViewBtn.classList.remove(
+          "bg-black",
+          "dark:bg-white",
+          "text-white",
+          "dark:text-black",
+          "border-black",
+          "dark:border-white"
+        );
         listViewBtn.classList.add("border-gray-300", "dark:border-gray-700");
       } else {
         postsContainer.className = "posts-list";
-        listViewBtn.classList.add("bg-black", "dark:bg-white", "text-white", "dark:text-black", "border-black", "dark:border-white");
+        listViewBtn.classList.add(
+          "bg-black",
+          "dark:bg-white",
+          "text-white",
+          "dark:text-black",
+          "border-black",
+          "dark:border-white"
+        );
         listViewBtn.classList.remove("border-gray-300", "dark:border-gray-700");
-        gridViewBtn.classList.remove("bg-black", "dark:bg-white", "text-white", "dark:text-black", "border-black", "dark:border-white");
+        gridViewBtn.classList.remove(
+          "bg-black",
+          "dark:bg-white",
+          "text-white",
+          "dark:text-black",
+          "border-black",
+          "dark:border-white"
+        );
         gridViewBtn.classList.add("border-gray-300", "dark:border-gray-700");
 
         // Adjust cards for list view
