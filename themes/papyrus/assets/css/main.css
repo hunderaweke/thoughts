@@ -47,41 +47,107 @@
 /* Typography Polish */
 .prose {
     max-width: 65ch;
-    font-size: 1.125rem;
-    /* Slightly larger for elegance */
-    line-height: 1.75;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+@media (min-width: 640px) {
+    .prose {
+        font-size: 1.0625rem;
+        line-height: 1.75;
+    }
+}
+
+@media (min-width: 768px) {
+    .prose {
+        font-size: 1.125rem;
+    }
 }
 
 /* Heading Styles */
 .prose h1 {
-    font-size: 2.25rem;
+    font-size: 1.75rem;
     line-height: 1.1;
     margin-top: 0;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     letter-spacing: -0.025em;
     font-weight: 700;
 }
 
+@media (min-width: 640px) {
+    .prose h1 {
+        font-size: 2rem;
+        margin-bottom: 1.75rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .prose h1 {
+        font-size: 2.25rem;
+        margin-bottom: 2rem;
+    }
+}
+
 .prose h2 {
-    font-size: 1.875rem;
-    margin-top: 3rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.25rem;
     letter-spacing: -0.025em;
     font-weight: 600;
 }
 
+@media (min-width: 640px) {
+    .prose h2 {
+        font-size: 1.75rem;
+        margin-top: 2.75rem;
+        margin-bottom: 1.375rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .prose h2 {
+        font-size: 1.875rem;
+        margin-top: 3rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
 .prose h3 {
-    font-size: 1.5rem;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    margin-top: 2rem;
+    margin-bottom: 0.875rem;
     font-weight: 600;
 }
 
+@media (min-width: 640px) {
+    .prose h3 {
+        font-size: 1.375rem;
+        margin-top: 2.25rem;
+        margin-bottom: 0.9375rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .prose h3 {
+        font-size: 1.5rem;
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+    }
+}
+
 .prose h4 {
-    font-size: 1.25rem;
-    margin-top: 2rem;
-    margin-bottom: 0.75rem;
+    font-size: 1.125rem;
+    margin-top: 1.75rem;
+    margin-bottom: 0.625rem;
     font-weight: 600;
+}
+
+@media (min-width: 768px) {
+    .prose h4 {
+        font-size: 1.25rem;
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+    }
 }
 
 .prose h5,
@@ -116,28 +182,47 @@ pre {
     background-color: var(--bg-secondary) !important;
     border: 1px solid var(--border-primary);
     border-radius: 0;
-    padding: 1.5rem;
+    padding: 1rem;
     overflow-x: auto;
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.875rem;
-    margin: 2rem 0;
+    font-size: 0.75rem;
+    margin: 1.5rem 0;
     line-height: 1.5;
     position: relative;
     color: var(--text-primary);
+    max-width: 100%;
+}
+
+@media (min-width: 640px) {
+    pre {
+        padding: 1.25rem;
+        font-size: 0.8125rem;
+        margin: 1.75rem 0;
+    }
+}
+
+@media (min-width: 768px) {
+    pre {
+        padding: 1.5rem;
+        font-size: 0.875rem;
+        margin: 2rem 0;
+    }
 }
 
 code {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 0.9em;
+    font-size: 0.875em;
     background-color: var(--bg-secondary);
     padding: 0.1em 0.3em;
     border-radius: 0;
+    word-wrap: break-word;
 }
 
 pre code {
     background-color: transparent;
     padding: 0;
     color: inherit;
+    word-wrap: normal;
 }
 
 /* Syntax Highlighting Overrides (Monochrome) */
@@ -273,4 +358,124 @@ pre code {
     color: #FFFFFF;
     font-weight: 600;
     border-left-color: #FFFFFF;
+}
+
+/* Responsive Images */
+.prose img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1.5rem 0;
+}
+
+@media (min-width: 768px) {
+    .prose img {
+        margin: 2rem 0;
+    }
+}
+
+/* Responsive Tables */
+.prose table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    margin: 1.5rem 0;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 640px) {
+    .prose table {
+        font-size: 0.9375rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .prose table {
+        font-size: 1rem;
+        margin: 2rem 0;
+        display: table;
+    }
+}
+
+.prose th,
+.prose td {
+    border: 1px solid var(--border-primary);
+    padding: 0.5rem;
+    text-align: left;
+}
+
+@media (min-width: 640px) {
+    .prose th,
+    .prose td {
+        padding: 0.625rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .prose th,
+    .prose td {
+        padding: 0.75rem;
+    }
+}
+
+.prose th {
+    background-color: var(--bg-secondary);
+    font-weight: 600;
+}
+
+/* Responsive Lists */
+.prose ul,
+.prose ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .prose ul,
+    .prose ol {
+        margin: 1.5rem 0;
+        padding-left: 2rem;
+    }
+}
+
+/* Responsive Blockquotes */
+.prose blockquote {
+    border-left: 3px solid var(--border-primary);
+    padding: 0.75rem 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+@media (min-width: 768px) {
+    .prose blockquote {
+        padding: 1rem 1.5rem;
+        margin: 2rem 0;
+    }
+}
+
+/* Mobile Viewport Optimization */
+@media (max-width: 639px) {
+    body {
+        font-size: 16px;
+        -webkit-text-size-adjust: 100%;
+    }
+}
+
+/* Prevent horizontal overflow */
+.prose {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Ensure embedded content is responsive */
+.prose iframe,
+.prose video,
+.prose embed,
+.prose object {
+    max-width: 100%;
+    height: auto;
 }

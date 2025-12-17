@@ -2,8 +2,8 @@
 <div class="grid grid-cols-12 gap-8 h-full">
 
     <!-- Sidebar: Filters & Branding -->
-    <aside class="col-span-12 md:col-span-3 lg:col-span-2 pt-2">
-        <h1 class="text-6xl font-sans tracking-tighter mb-12 relative text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <aside class="col-span-12 md:col-span-3 lg:col-span-2 pt-2 mb-6 md:mb-0">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-sans tracking-tighter mb-8 md:mb-12 relative text-gray-900 dark:text-gray-100 transition-colors duration-300">
             Blog
             <span class="absolute top-0 -right-4 text-xs font-mono text-gray-500 dark:text-gray-400">({{ len .Site.RegularPages }})</span>
         </h1>
@@ -33,7 +33,7 @@
     <!-- Main List: Posts -->
     <div class="col-span-12 md:col-span-9 lg:col-span-10">
         <!-- Header Row -->
-        <div class="grid grid-cols-12 border-b border-theme-border pb-2 mb-4 font-mono text-xs uppercase text-gray-500 tracking-wider">
+        <div class="hidden md:grid grid-cols-12 border-b border-theme-border pb-2 mb-4 font-mono text-xs uppercase text-gray-500 tracking-wider">
             <div class="col-span-2">/ Date</div>
             <div class="col-span-7">/ Name</div>
             <div class="col-span-2">/ Tags</div>
@@ -45,26 +45,26 @@
             <!-- Add data-tags attribute for JS filtering -->
             <div class="group post-item border-b border-theme-border" data-tags="{{ with .Params.tags }}{{ delimit . "," | lower }}{{ end }}">
                 <!-- Header -->
-                <div class="group grid grid-cols-12 py-6 items-center hover:bg-[#ccff00] transition-colors duration-300 ease-out -mx-4 px-4 relative">
+                <div class="group grid grid-cols-12 py-4 md:py-6 items-start md:items-center hover:bg-[#ccff00] transition-colors duration-300 ease-out -mx-4 px-4 relative">
                     <!-- Link Area (Date + Title) - Click to Navigate -->
-                    <a href="{{ .RelPermalink }}" class="col-span-9 grid grid-cols-9 items-center group-hover:underline decoration-1 underline-offset-4 w-full h-full z-10">
-                        <div class="col-span-2 font-mono text-xs text-gray-500 dark:text-gray-400 group-hover:text-black shrink-0 transition-colors duration-300">
+                    <a href="{{ .RelPermalink }}" class="col-span-12 md:col-span-9 md:grid md:grid-cols-9 items-center group-hover:underline decoration-1 underline-offset-4 w-full h-full z-10 mb-3 md:mb-0">
+                        <div class="font-mono text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 group-hover:text-black transition-colors duration-300 mb-2 md:mb-0 md:col-span-2">
                             {{ .Date.Format "2006.01.02" }}
                         </div>
-                        <div class="col-span-7 text-2xl md:text-3xl font-sans tracking-tight font-medium pr-8 leading-snug group-hover:text-black transition-colors duration-300">
+                        <div class="text-xl sm:text-2xl md:text-3xl font-sans tracking-tight font-medium leading-snug group-hover:text-black transition-colors duration-300 md:col-span-7 md:pr-8">
                             {{ .Title }}
                         </div>
                     </a>
 
                     <!-- Interaction Area (Tags + Expander) -->
-                    <div class="col-span-3 grid grid-cols-3 items-center z-20">
-                        <div class="col-span-2 flex flex-wrap gap-1 justify-end relative">
+                    <div class="col-span-12 md:col-span-3 grid grid-cols-12 md:grid-cols-3 items-center z-20 gap-2">
+                        <div class="col-span-10 md:col-span-2 flex flex-wrap gap-1 justify-start md:justify-end relative">
                              {{ range .Params.tags }}
                             <span class="text-[10px] font-mono border border-gray-300 dark:border-gray-700 rounded-none px-1 text-gray-500 dark:text-gray-400 group-hover:border-black group-hover:text-black uppercase bg-white/50 dark:bg-black/20 group-hover:bg-transparent transition-colors duration-300">{{ . }}</span>
                             {{ end }}
                         </div>
                         <!-- Expander Button (Specific Target) -->
-                        <div class="col-span-1 flex justify-end text-gray-400 dark:text-gray-500 group-hover:text-black font-mono text-xl cursor-pointer accordion-trigger p-2 transition-colors duration-300" onclick="toggleAccordion(this)">
+                        <div class="col-span-2 md:col-span-1 flex justify-end text-gray-400 dark:text-gray-500 group-hover:text-black font-mono text-xl cursor-pointer accordion-trigger p-2 transition-colors duration-300" onclick="toggleAccordion(this)">
                             <span class="plus-icon">+</span>
                             <span class="minus-icon hidden">–</span>
                         </div>
@@ -74,14 +74,14 @@
                 <!-- Expansion Panel -->
                 <div class="accordion-content bg-gray-50 dark:bg-gray-900 grid grid-rows-[0fr] transition-[grid-template-rows,background-color] duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]">
                     <div class="overflow-hidden">
-                        <div class="grid grid-cols-12 py-8 -mx-4 px-4 border-t border-dashed border-gray-300 dark:border-gray-700 gap-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-12 py-6 md:py-8 -mx-4 px-4 border-t border-dashed border-gray-300 dark:border-gray-700 gap-4 md:gap-y-6">
                             
                             <!-- Row 1: Summary & Author -->
-                            <!-- Summary Label -->
-                            <div class="col-span-2 font-mono text-[10px] uppercase text-gray-500 dark:text-gray-400 pt-1 tracking-wider">Summary :</div>
+                            <!-- Summary Section -->
+                            <div class="md:col-span-2 font-mono text-[10px] uppercase text-gray-500 dark:text-gray-400 tracking-wider mb-2 md:mb-0 md:pt-1">Summary :</div>
                             
                             <!-- Summary Content -->
-                            <div class="col-span-7 font-sans text-lg leading-relaxed text-gray-900 dark:text-gray-100 pr-8 transition-colors duration-300">
+                            <div class="md:col-span-7 font-sans text-base md:text-lg leading-relaxed text-gray-900 dark:text-gray-100 md:pr-8 transition-colors duration-300 mb-4 md:mb-0">
                                 {{ if .Params.summary }}
                                     {{ .Params.summary }}
                                 {{ else }}
@@ -89,20 +89,20 @@
                                 {{ end }}
                             </div>
 
-                            <!-- Author Label -->
-                            <div class="col-span-1 font-mono text-[10px] uppercase text-gray-500 dark:text-gray-400 pt-1 tracking-wider text-right pr-2">Authors :</div>
+                            <!-- Author Section -->
+                            <div class="md:col-span-1 font-mono text-[10px] uppercase text-gray-500 dark:text-gray-400 tracking-wider mb-2 md:mb-0 md:pt-1 md:text-right md:pr-2">Authors :</div>
                             
                             <!-- Author Content -->
-                            <div class="col-span-2 font-sans text-base text-gray-900 dark:text-gray-100 transition-colors duration-300">
+                            <div class="md:col-span-2 font-sans text-sm md:text-base text-gray-900 dark:text-gray-100 transition-colors duration-300 mb-4 md:mb-0">
                                 {{ .Params.author | default "Author" }}
                             </div>
 
                             <!-- Row 2: Topics -->
                             <!-- Topics Label -->
-                            <div class="col-span-2 font-mono text-[10px] uppercase text-gray-500 dark:text-gray-400 pt-1 tracking-wider">Topics :</div>
+                            <div class="md:col-span-2 font-mono text-[10px] uppercase text-gray-500 dark:text-gray-400 tracking-wider mb-2 md:mb-0 md:pt-1">Topics :</div>
                             
                             <!-- Topics Content -->
-                            <div class="col-span-10 flex flex-wrap gap-2">
+                            <div class="md:col-span-10 flex flex-wrap gap-2 mb-4 md:mb-0">
                                 {{ with .Params.tags }}
                                     {{ range . }}
                                     <span class="bg-gray-200/60 dark:bg-gray-700/40 border border-gray-200 dark:border-gray-600 px-1.5 py-0.5 rounded-none text-[10px] font-mono uppercase tracking-wide text-gray-600 dark:text-gray-300 transition-colors duration-300">{{ . }}</span>
@@ -111,7 +111,7 @@
                             </div>
 
                             <!-- Row 3: Read Button -->
-                            <div class="col-span-12 mt-2">
+                            <div class="md:col-span-12 mt-2">
                                  <a href="{{ .RelPermalink }}" class="block w-full bg-gray-200 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-none py-2 text-center hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black hover:border-black dark:hover:border-white transition-all duration-500 ease-out font-sans font-medium text-xs uppercase tracking-wide text-gray-700 dark:text-gray-300">
                                     Read
                                 </a>
