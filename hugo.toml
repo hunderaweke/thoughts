@@ -1,7 +1,9 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://hunderaweke.github.io/personal-blog/'
 languageCode = 'en-us'
 title = "THOUGHTS"
 theme = "papyrus"
+relativeURLs = false
+canonifyURLs = true
 
 [markup]
   [markup.highlight]
