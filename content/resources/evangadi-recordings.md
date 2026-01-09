@@ -15,3 +15,4 @@ These are the recording that we did till this time so make sure to update it and
 | 23-12-2025 | [Semantic and Non Semantic Tags](https://youtu.be/L6ad36NYlGM)           | https://youtu.be/L6ad36NYlGM |
 | 23-12-2025 | [Group Challenge 1 Discussion](https://youtu.be/J8E6SSLMZts)             | https://youtu.be/J8E6SSLMZts |
 | 08-01-2026 | [Group discussion on Media Query Homework](https://youtu.be/LfecJFbm49c) | https://youtu.be/LfecJFbm49c |
+| 09-01-2026 | [Media Query class work](https://youtu.be/jhiwCWTKcM4)                   | https://youtu.be/jhiwCWTKcM4 |
