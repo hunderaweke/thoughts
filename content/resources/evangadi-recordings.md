@@ -17,3 +17,4 @@ These are the recording that we did till this time so make sure to update it and
 | 08-01-2026 | [Group discussion on Media Query Homework](https://youtu.be/LfecJFbm49c)   | https://youtu.be/LfecJFbm49c |
 | 09-01-2026 | [Media Query class work](https://youtu.be/jhiwCWTKcM4)                     | https://youtu.be/jhiwCWTKcM4 |
 | 15-01-2026 | [Apple page cloning with bootstrap (Part 1)](https://youtu.be/ntSdd7EaFHY) | https://youtu.be/ntSdd7EaFHY |
+| 15-01-2026 | [Apple page cloning with bootstrap (Part 2)](https://youtu.be/_sm_dbqB0HQ) | https://youtu.be/_sm_dbqB0HQ |
