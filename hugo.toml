@@ -1,4 +1,4 @@
-baseURL = 'https://hunderaweke.github.io/thoughts/'
+baseURL = 'https://thoughts.hundera.com/'
 languageCode = 'en-us'
 title = "THOUGHTS"
 theme = "papyrus"
