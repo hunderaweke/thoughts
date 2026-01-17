@@ -63,7 +63,7 @@ jobs:
                   hugo \
                     --gc \
                     --minify \
-                    --baseURL "https://hunderaweke.github.io/thoughts/"
+                    --baseURL "https://thoughts.hundera.com/"
 
             - name: Upload artifact
               uses: actions/upload-pages-artifact@v3

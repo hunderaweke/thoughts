@@ -2,8 +2,8 @@ baseURL = 'https://thoughts.hundera.com/'
 languageCode = 'en-us'
 title = "THOUGHTS"
 theme = "papyrus"
-relativeURLs = true
-canonifyURLs = false
+relativeURLs = false
+canonifyURLs = true
 
 [markup]
   [markup.highlight]
