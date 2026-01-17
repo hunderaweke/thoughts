@@ -4,5 +4,6 @@
 
 <a href="{{ $url }}"
    {{- if $title }} title="{{ $title }}"{{ end }}
-   {{- if strings.HasPrefix $url "http" }} target="_blank" rel="noopener noreferrer"{{ end -}}
->{{ $text | safeHTML }}</a>
+   {{- if strings.HasPrefix $url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>
+   {{- $text | safeHTML -}}
+</a>
